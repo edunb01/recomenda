@@ -3,6 +3,9 @@ from google.oauth2 import service_account
 from google.cloud import storage
 import numpy as np
 import pandas as pd
+from io import StringIO
+
+
 
 # Create API client.
 credentials = service_account.Credentials.from_service_account_info(
@@ -15,17 +18,17 @@ client = storage.Client(credentials=credentials)
 @st.experimental_memo(ttl=600)
 def read_file(bucket_name, file_path):
     bucket = client.bucket(bucket_name)
-    content = bucket.blob(file_path).download_as_string().decode("utf-8")
+    content = bucket.blob(file_path).get_blob_to_text()
     return content
 
 bucket_name = "app_recomenda"
 file_path = "servicos_com_id.csv"
 
 content = read_file(bucket_name, file_path)
-df = pd.DataFrame(content)
-#st.write(content[:50])
+#df = pd.DataFrame(content)
+st.write(content[:50])
 #df = pd.read_csv(content, sep=";")
-st.dataframe(df[0,:])
+#st.dataframe(df[0,:])
 
 # import streamlit as st
 import numpy as np
