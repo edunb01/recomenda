@@ -25,10 +25,10 @@ bucket_name = "app_recomenda"
 file_path = "servicos_com_id.csv"
 
 content = read_file(bucket_name, file_path)
-df = pd.DataFrame(content)
-#st.write(content[:50])
+#df = pd.DataFrame(content)
+st.write(content[:50].split(";"))
 #df = pd.read_csv(content, sep=";")
-st.dataframe(df[0,:])
+#st.dataframe(df[0,:])
 
 # import streamlit as st
 import numpy as np
