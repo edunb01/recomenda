@@ -21,8 +21,8 @@ def read_file(bucket_name, file_path):
 bucket_name = "app_recomenda"
 file_path = "servicos_com_id.csv"
 
-content = pd.DataFrame(read_file(bucket_name, file_path))
-
+content = read_file(bucket_name, file_path)
+st.write(content.dtype)
 #st.dataframe(content[0,:])
 
 # import streamlit as st
