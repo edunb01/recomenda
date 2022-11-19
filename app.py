@@ -18,7 +18,7 @@ client = storage.Client(credentials=credentials)
 @st.experimental_memo(ttl=600)
 def read_file(bucket_name, file_path):
     bucket = client.bucket(bucket_name)
-    content = bucket.blob(file_path).get_blob_to_text()
+    content = bucket.blob(file_path).download_blob_to_stream()
     return content
 
 bucket_name = "app_recomenda"
