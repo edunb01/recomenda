@@ -23,7 +23,7 @@ file_path = "servicos_com_id.csv"
 
 content = pd.DataFrame(read_file(bucket_name, file_path))
 
-st.write(content[0,:])
+st.dataframe(content[0,:])
 
 # import streamlit as st
 import numpy as np
