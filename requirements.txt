@@ -1,0 +1,4 @@
+google.oauth2
+google.cloud
+pandas
+numpy
