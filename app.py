@@ -1,6 +1,8 @@
 import streamlit as st
 from google.oauth2 import service_account
 from google.cloud import storage
+import numpy as np
+import pandas as pd
 
 # Create API client.
 credentials = service_account.Credentials.from_service_account_info(
@@ -24,8 +26,8 @@ content = pd.DataFrame(read_file(bucket_name, file_path))
 st.write(content[0,:])
 
 # import streamlit as st
-# import numpy as np
-# import pandas as pd
+import numpy as np
+import pandas as pd
 # import json
 
 # with open('../servicos.txt') as json_file:
