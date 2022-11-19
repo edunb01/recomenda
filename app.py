@@ -16,18 +16,20 @@ client = storage.Client(credentials=credentials)
 # Retrieve file contents.
 # Uses st.experimental_memo to only rerun when the query changes or after 10 min.
 @st.experimental_memo(ttl=600)
-def read_file(bucket_name, file_path):
-    bucket = client.bucket(bucket_name)
-    content = bucket.blob(file_path).download_to_filename().decode("utf-8")
-    return content
+# def read_file(bucket_name, file_path):
+#     bucket = client.bucket(bucket_name)
+#     content = bucket.blob(file_path).download_to_filename().decode("utf-8")
+#     return content
 
 bucket_name = "app_recomenda"
 file_path = "servicos_com_id.csv"
 
-servicos = read_file(bucket_name, file_path)
+client.bucket("app_recomenda").blob('servicos_com_id.csv').download_to_filename("servicos.csv")
+
+#servicos = read_file(bucket_name, file_path)
 #df = pd.DataFrame(content)
 #st.write(content[:50])
-df = pd.read_csv(servicos, sep=";")
+df = pd.read_csv('servicos.csv', sep=";")
 st.dataframe(df[0,:])
 
 # import streamlit as st
