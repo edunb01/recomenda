@@ -19,7 +19,7 @@ def read_file(bucket_name, file_path):
 bucket_name = "app_recomenda"
 file_path = "servicos_com_id.csv"
 
-content = read_file(bucket_name, file_path)
+content = pd.DataFrame(read_file(bucket_name, file_path))
 
 st.write(content[0,:])
 
