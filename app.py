@@ -18,17 +18,17 @@ client = storage.Client(credentials=credentials)
 @st.experimental_memo(ttl=600)
 def read_file(bucket_name, file_path):
     bucket = client.bucket(bucket_name)
-    content = bucket.blob(file_path).download_blob_to_stream()
+    content = bucket.blob(file_path).download_to_filename().decode("utf-8")
     return content
 
 bucket_name = "app_recomenda"
 file_path = "servicos_com_id.csv"
 
-content = read_file(bucket_name, file_path)
+servicos = read_file(bucket_name, file_path)
 #df = pd.DataFrame(content)
-st.write(content[:50])
-#df = pd.read_csv(content, sep=";")
-#st.dataframe(df[0,:])
+#st.write(content[:50])
+df = pd.read_csv(servicos, sep=";")
+st.dataframe(df[0,:])
 
 # import streamlit as st
 import numpy as np
